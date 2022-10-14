@@ -9,5 +9,7 @@ import logo_white from './logo_white.png';
 import flag_en from './flag_en.png';
 import flag_mn from './flag_mn.png';
 import empty from './empty.png';
+import vendor_pdf from './Vendor Web Гарын авлага 2022.pdf';
 
-export { image_login, image_login2, image_login3, logo1, logo2, logo, flag_en, flag_mn, logo1_white, logo_white, empty };
+
+export { image_login, image_login2, image_login3, logo1, logo2, logo, flag_en, flag_mn, logo1_white, logo_white, empty , vendor_pdf};

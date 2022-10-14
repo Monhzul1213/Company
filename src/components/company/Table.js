@@ -128,11 +128,19 @@ export const Table = (props) => {
 
   const columns = [
     {
-      title: t('table.company'), 
+      title: t('print.company'), 
       // accessor: 'CpnyID' ,
       dataIndex: 'CpnyID',
       key: 'CpnyID',
       ...getColumnSearchProps('CpnyID'),
+      
+    },
+    {
+      title: t('table.company'), 
+      // accessor: 'CpnyID' ,
+      dataIndex: 'CpnyName',
+      key: 'CpnyName',
+      ...getColumnSearchProps('CpnyName'),
       
     },
     {

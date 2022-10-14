@@ -8,7 +8,7 @@ import { useNavigate, createSearchParams } from 'react-router-dom';
 import {getUser} from '../../firebase';
 import { login } from '../../firebase';
 
-// import { login } from '../../services/login.slice';
+import { login as setLogin } from '../../services/login.slice';
 import { config } from '../../helpers/login.config';
 import  logo1_white  from '../../assets/logo1_white.png';
 import { Error2, Language, Loader } from '../all';
@@ -26,16 +26,19 @@ export default function LoginNew(){
   const [tVisible, setTVisible] = useState(false);
   const [tResponse, setTResponse] = useState(null);
   const [checked, setChecked] = useState(false);
-  const user = useSelector(state => state.login.webUser);
+  const user1 = useSelector(state => state.login.user1);
+  const webUser = useSelector(state => state.login.webUser);
   const toRemember = useSelector(state => state.login.toRemember);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
  useEffect(() => {
-    if(user?.WebUserID) setEmail(user?.WebUserID);
-    if(toRemember && user?.WebPassword) setPassword(user?.WebPassword);
+    if(user1) setEmail(user1);
+    if(toRemember && webUser) setPassword(webUser);
     if(toRemember) setChecked(true);
-    console.log(user)
+    console.log('=========',user1)
+    console.log('=========',webUser)
+
     return () => {};
   }, []);
 
@@ -62,13 +65,19 @@ const handleEnter = e => {
     setLoading(true);
     setError(null);
     login(email?.trim(), password?.trim())
-    .then(response => {  
-      if(response?.error){
-        setError(response?.error);
+    .then(response => {
+      dispatch(setLogin({user: email , webUser: password, toRemember: checked}))
+        console.log(response)  
+      if(response?.error == 'auth/user-not-found'){
+        setError(t('errors.auth/user-not-found'));
+      }
+      else if(response?.error == 'auth/wrong-password'){
+        setError(t('errors.auth/wrong-password'));
       }
       setLoading(false);
-    });
-  }
+    })
+    }
+
   const onForgot = () => {
     navigate({ pathname: "forgot_password", search: createSearchParams({ email }).toString()});
   }

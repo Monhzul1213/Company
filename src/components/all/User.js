@@ -7,12 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { auth, logout } from '../../firebase';
 import { logout as apiLogout } from '../../services';
 import { DynamicMDIcon, DynamicAIIcon } from './DynamicIcon';
+import { vendor_pdf } from '../../assets';
 
 export function User(){
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
-  const login = useSelector(state => state.login?.user);
 
   const menuStyle = {paddingTop: 5, paddingBottom: 5, borderRadius: 5};
 
@@ -21,7 +21,9 @@ export function User(){
     dispatch(apiLogout());
     console.log(user)
   }
-
+  const onPressLanguage = () => {
+    i18n.changeLanguage(i18n?.language === 'mng' ? 'eng' : 'mng');
+  }
   const menu = (
     <Menu style={menuStyle}>
       <Menu.Item key='user'>
@@ -29,8 +31,25 @@ export function User(){
           <DynamicAIIcon className='drop_user_icon' name='AiOutlineUser' />
           <div>
             <p className='drop_user_name'>{user?.displayName}</p>
-            <p className='drop_user_email'>{user?.email ?? login?.username}</p>
+            <p className='drop_user_email'>{user?.email }</p>
           </div>
+        </div>
+      </Menu.Item>
+      <Menu.Item key='divider'>
+        <div className='divider' />
+      </Menu.Item>
+      <Menu.Item key='guide'>
+        <a href={vendor_pdf} target='_blank' rel='noopener noreferrer'>
+          <div className='menu_language_back2'>
+            <DynamicMDIcon className='menu_icon2' name='MdHelpOutline' />
+            <span className='menu_language'>{t('guide')}</span>
+          </div>
+        </a>
+      </Menu.Item>
+      <Menu.Item key='language' onClick={onPressLanguage}>
+        <div className='menu_language_back2'>
+          <DynamicMDIcon className='menu_icon2' name='MdLanguage' />
+          <span className='menu_language'>{i18n?.language === 'mng' ? 'Монгол' : 'English'}</span>
         </div>
       </Menu.Item>
       <Menu.Item key='divider'>

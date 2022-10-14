@@ -140,14 +140,10 @@ input:-webkit-autofill:active{
   border: none;
   height: var(--height);
   flex: 1;
-  /* border-radius: var(--radius); */
   border-radius: 40px;
-  color: var(--root-color);
-  /* color: var(--text-color); */
   font-size: 16px;
   padding: 0 15px;
   background-color: #ffffff33;
-  /* background-color: var(--hover2-color); */
 }
 .pass:focus {
   background-color: rgba(0, 0, 0, 0);
@@ -160,12 +156,19 @@ input:-webkit-autofill:active{
   -moz-box-shadow: 0 0 3px 2px var(--link-color2);
   box-shadow: 0 0 3px 2px var(--link-color2);
 }
-
-
-
-
-
-
+.ant-input-password {
+  border: none;
+  height: var(--height);
+  flex: 1;
+  /* border-radius: var(--radius); */
+  border-radius: 40px;
+  color: var(--root-color);
+  /* color: var(--text-color); */
+  font-size: 16px;
+  padding: 0 15px;
+  background-color: #ffffff33;
+  /* background-color: var(--hover2-color); */
+}
 .login_input_icon {
   position: absolute;
   right: 10px;
@@ -612,6 +615,8 @@ input:-webkit-autofill:active{
   width: 40px;
   /* background-color: var(--border-color); */
   background-color: #ffffff99;
+  align-items: center;
+
 }
 
 .social_label {
@@ -619,6 +624,7 @@ input:-webkit-autofill:active{
   font-size: 13px;
   font-weight: 500;
   padding: 0 10px;
+margin-top: 1;
 }
 
 .social_row {
@@ -832,4 +838,65 @@ ol ol > li:before {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+.rback_row {
+  margin-top: 35px;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.rback_link {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.rback_link:hover .rback_icon, .rback_link:hover .rback_text {
+  color: var(--link-color);
+}
+
+.rback_icon {
+  color: var(--root-color1);
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.rback_text {
+  color: var(--root-color1);
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.sent_back {
+  background-color: #ffffff15;
+  border-radius: 5px;
+  margin-top: 20px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 10px 10px;
+}
+
+.sent_icon_back {
+  background-color: #ffffff55;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sent_icon {
+  color: var(--root-color);
+  font-size: 20px;
+}
+
+.sent_text {
+  color: var(--root-color1);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 550;
+  margin: 5px 0 0 0;
 }

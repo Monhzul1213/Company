@@ -155,7 +155,12 @@ code {
   flex: 1;
   height: 1px;
 }
-
+.menu_language_back2 {
+  padding: 0 5px 2px 5px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
 .gap {
   padding: 5px;
 }

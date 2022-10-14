@@ -196,5 +196,7 @@
   "sent": "We have sent password reset instructions to your email.",
   "change": "Change password",
   "pass_match": "The password confirmation does not match",
-  "pass_success": "Your password has been updated successfully."
+  "pass_success": "Your password has been updated successfully.",
+  "guide": "User guide"
+
 }

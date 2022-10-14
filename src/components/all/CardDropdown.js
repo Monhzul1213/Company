@@ -25,7 +25,7 @@ import { Error } from './Error';
   const customStyles = {
     option: (provided, state) => ({
       ...provided,
-      borderBottom: '1px dotted pink',
+      // borderBottom: '1px dotted pink',
       height: state.isSelected ? '20px' : '20px',
       paddingTop: 0,
       
@@ -47,8 +47,8 @@ export function CardDropdown(props){
       { label: "Бараа материал : Тохируулга", value: 'INAJ' },
       {label: "Бараа материал : Зарлага", value: 'INII' },
       {label: "Бараа материал : Тооллого", value: 'INPI' },
-      { label: "Бараа материал : Орлого", value: 'INRC' },
-      { label: "Бараа материал : Шилжүүлэг", value: 'INTR' },
+      // { label: "Бараа материал : Орлого", value: 'INRC' },
+      // { label: "Бараа материал : Шилжүүлэг", value: 'INTR' },
       { label: "Борлуулалт : Буцаалтын орлого", value: 'PSCM' },
       { label: "Борлуулалт : Зарлага", value: 'PSIN' }
     ];

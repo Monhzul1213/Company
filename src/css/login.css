@@ -1,4 +1,4 @@
-@import '../color.css';
+/* @import '../color.css';
 .admin{
   color: #1372bb;
   font-size: 16px;
@@ -28,7 +28,7 @@ input:-webkit-autofill:active{
   /* width: 50vw;
   height: 80vh;
   /* margin-top: 20px ;
-  position: absolute; */
+  position: absolute; 
 }
 
 .login_form_icon {
@@ -77,14 +77,13 @@ input:-webkit-autofill:active{
 }
 
 .login_input_back {
-  /* all: unset; */
+  /* all: unset; 
   height: var(--height);
   width: 100%;
   flex: 1 1;
   border-radius: var(--radius);
   color: var(--text-color);
   font-size: 16px;
-  /* padding: 0 10px; */
   background-color: var(--hover2-color);
 }
 
@@ -110,19 +109,8 @@ input:-webkit-autofill:active{
   color: var(--text-color);
   font-size: 16px;
   padding: 0 10px;
-  /* background-color: var(--hover2-color); */
 }
 
-/* .ant-input:focus {
-  background-color: rgba(0, 0, 0, 0);
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--link-color);
-  border-radius: var(--radius);
-  -webkit-box-shadow: 0 0 3px 2px var(--link-color2);
-  -moz-box-shadow: 0 0 3px 2px var(--link-color2);
-  box-shadow: 0 0 3px 2px var(--link-color2);
-} */
 
 .ant-input-affix-wrapper-focused {
   background-color: var(--root-color) !important;
@@ -174,12 +162,6 @@ input:-webkit-autofill:active{
   background-color: var(--hover-color);
 }
 
-.copyright_text {
-  color: var(--text-color2);
-  font-size: 14px;
-  text-align: center;
-  margin: 0 auto 15px auto;
-}
 
 .copyright_text:hover {
   color: var(--link-color);
@@ -254,14 +236,9 @@ input:-webkit-autofill:active{
 }
 
 @media only screen and (min-width: 720px) {
-  /* .login_image_container {
-    display: none;
-  } */
+  
 .login{
   background-color: #1372bb;
-  /* padding: 100px;
-  width: 100%;
-  height: 100%; */
 }
   .login_slides {
     height: 100vh;
@@ -316,4 +293,4 @@ input:-webkit-autofill:active{
   height: 8px;
   border-radius: 10px;
   opacity: 1;
-}
+} */

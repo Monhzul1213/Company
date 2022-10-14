@@ -5,10 +5,13 @@ const initialState = {
   token: '',
   url: 'http://192.168.1.220:3737/VendorSystem.asmx/',
   user: null,
+  user1: null,
   collapsed: false,
   visible: false,
   vendID: null,
   order: null,
+  toRemember: false,
+
 };
 
 export const loginSlice = createSlice({
@@ -23,6 +26,10 @@ export const loginSlice = createSlice({
     },
     login: (state, action) => {
       state.user = action.payload;
+      state.user1 = action.payload.user;
+      console.log(action.payload)
+      state.webUser = action.payload.webUser;
+      state.toRemember = action.payload?.toRemember;
     },
     logout: state => {
       state.user = null;

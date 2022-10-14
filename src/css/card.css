@@ -46,24 +46,7 @@
   font-weight: 700;
   margin: 10px 20px ;
 }
-/* .card1{
-  width: 300px;
 
-  margin-top: 10px;
-}
-.card2{
-margin-top: -70px;
-margin-left: 350px;
-width:300px;
-}
-.card3{
-  width: 650px;
-} */
-
-
-/* .ant-modal-wrap{
-  overflow: hidden;
-} */
 .ant-modal {
   box-sizing: border-box;
   margin: 0;
@@ -135,36 +118,7 @@ width:300px;
     display: flex;
     flex: row;
   }
-  .card2{
-    width: 600px;
-    columns: 2;
-    display: flex;
-    flex: row;
-  }
-  .card3{
-    width: 600px;
-    columns: 2;
-    display: flex;
-    flex: row;
-  }
-  .card4{
-    width: 600px;
-    columns: 2;
-    display: flex;
-    flex: row;
-  }
-  .card5{
-    width: 600px;
-    columns: 2;
-    display: flex;
-    flex: row;
-  }
-  .card6{
-    width: 600px;
-    columns: 2;
-    display: flex;
-    flex: row;
-  }
+
   .ant-modal-content {
     border-radius: var(--radius-table);
     position: relative;

@@ -35,12 +35,6 @@ export function Check(props) {
         <Checkbox value="INPI">Тооллого</Checkbox>
       </Col>
       <Col span={4}>
-        <Checkbox value="INRC">Орлого</Checkbox>
-      </Col>
-      <Col span={4}>
-        <Checkbox value="INTR">Шилжүүлэг</Checkbox>
-      </Col>
-      <Col span={4}>
         <Checkbox value="PSCM">Буцаалтын орлого</Checkbox>
       </Col>
       <Col span={4}>

@@ -24,5 +24,5 @@ export const config1 = {//test
     },
     api_url: "http://202.131.232.101:3737/VendorSystem.asmx/",
     version: "",
-    domain: "http://vendor.ultimate.mn",
+    domain: "http://vendor.ultimate.mn/company/",
   }

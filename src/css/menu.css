@@ -163,6 +163,9 @@
      margin: 10px 0 ;
      color: #fff;
   }
+  .drop_user_vend {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 440px) {
@@ -234,6 +237,14 @@
     color: var(--text-color);
     font-size: 16px;
     font-weight: 500;
+  }
+  .drop_user_vend {
+    border-radius: 5px;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    margin: 0 5px 0 0;
   }
 }
 
@@ -459,4 +470,10 @@
 
 .logo_link:hover {
   cursor: pointer;
+}
+
+.menu_icon2 {
+  color: var(--text-color2);
+  font-size: 18px;
+  margin-right: 5px;
 }

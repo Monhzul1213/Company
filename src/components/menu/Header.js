@@ -12,7 +12,6 @@ export function Header(bread){
     <div className='header_back'>
       <img src={logo} className="menu_logo_back"/>
       <p className='menu_logo_title'>{t('cmp_list')}</p>
-        <Language hideArrow={true}/>
         <User/>
     </div>
   )
