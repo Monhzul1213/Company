@@ -26,7 +26,7 @@ export function User(){
   }
   const menu = (
     <Menu style={menuStyle}>
-      <Menu.Item key='user'>
+      <Menu.Item >
         <div className='drop_user_back'>
           <DynamicAIIcon className='drop_user_icon' name='AiOutlineUser' />
           <div>
@@ -34,9 +34,6 @@ export function User(){
             <p className='drop_user_email'>{user?.email }</p>
           </div>
         </div>
-      </Menu.Item>
-      <Menu.Item key='divider'>
-        <div className='divider' />
       </Menu.Item>
       <Menu.Item key='guide'>
         <a href={vendor_pdf} target='_blank' rel='noopener noreferrer'>
