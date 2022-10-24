@@ -10,7 +10,7 @@ export const config1 = {//test
     },
     api_url: "http://192.168.1.220:3737/VendorSystem.asmx/",
     version: "Test",
-    domain: "http://192.168.1.133:3000",
+    domain: "http://192.168.1.170:3600",
   }
   export const config = {//production
     firebaseConfig: {
@@ -24,5 +24,5 @@ export const config1 = {//test
     },
     api_url: "http://202.131.232.101:3737/VendorSystem.asmx/",
     version: "",
-    domain: "http://vendor.ultimate.mn/company/",
+    domain: "http://vendor.ultimate.mn/company",
   }

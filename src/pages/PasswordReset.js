@@ -5,7 +5,7 @@ import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import '../css/login1.css';
 import  logo1_white  from '../assets/logo1_white.png';
 import { checkWebToken, updateWebPassword } from '../firebase';
-import { DynamicAIIcon, Error, Language, Loader } from '../components/all';
+import { DynamicAIIcon, Error2, Language, Loader } from '../components/all';
 import { Input } from '../components/login';
 
 export function PasswordReset(){
@@ -30,9 +30,9 @@ export function PasswordReset(){
     setSuccess(false);
     let id = searchParams?.get('id');
     let token = searchParams?.get('token');
-    // const response = await checkWebToken(id, token);
-    // if(response?.error) setError(response?.error);
-    // else setDisabled(false);
+    const response = await checkWebToken(id, token);
+    if(response?.error) setError(response?.error);
+    else setDisabled(false);
     setLoading(false);
   }
 
@@ -50,14 +50,14 @@ export function PasswordReset(){
     if(password?.trim() === confirm?.trim()){
       setLoading(true);
       setSuccess(false);
-    //   const id = searchParams?.get('id');
-    //   const response = await updateWebPassword(id, password?.trim());
-    //   if(response?.error) setError(response?.error);
-    //   else {
-    //     setSuccess(true);
-    //     setTimeout(() => navigate('/'), 1800);
-    //   }
-    //   setLoading(false);
+      const id = searchParams?.get('id');
+      const response = await updateWebPassword(id, password?.trim());
+      if(response?.error) setError(response?.error);
+      else {
+        setSuccess(true);
+        setTimeout(() => navigate('/'), 1800);
+      }
+      setLoading(false);
     } else setError(t('pass_match'));
   }
 
@@ -74,7 +74,7 @@ export function PasswordReset(){
         <p className='login_title_3'>{t('change')}</p>
         <Input {...passProps} />
         <Input {...confirmProps} />
-        {error ? <Error error={error} id='login_error_3' /> : null}
+        {error ? <Error2 error={error} id='login_error_3' /> : null}
         <button type='submit' className='login_form_btn' id='login_form_btn3' disabled={disabled}>
           {loading ? <Loader className='login_loader' color='#fff' /> : t('save')}
         </button>

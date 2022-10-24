@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
-
 import '../css/login1.css';
-import { getWebsByEmail, setWebToken, useAuth1 } from '../firebase';
+import { getWebsByEmail, setWebToken } from '../firebase';
 import  logo1_white  from '../assets/logo1_white.png';
-import { DynamicAIIcon, Error, Language, Loader } from '../components/all';
-import { Input, ModalCompany } from '../components/login';
-import { config, config1 } from '../helpers/login.config';
+import { DynamicAIIcon, Error2, Error, Language, Loader } from '../components/all';
+import { Input } from '../components/login';
+import { config1, config } from '../helpers/login.config';
 
 export function PasswordForgot(){
   const { t } = useTranslation();
@@ -19,81 +18,69 @@ export function PasswordForgot(){
   const [list, setList] = useState([]);
   const [visible, setVisible] = useState(false);
   const [searchParams] = useSearchParams();
-  const {forgotPassword}= useAuth1()
-  useEffect(() => {
+
+useEffect(() => {
     let email = searchParams?.get('email');
     setEmail(email ?? '');
     return () => {};
   }, []);
 
-  const showError = error => {
+const showError = error => {
     setError(error);
     setLoading(false);
   }
 
-  const showList = users => {
+const showList = users => {
     setVisible(true);
     setList(users);
     setLoading(false)
   }
 
-  const sendEmail = async id => {
+const sendEmail = async id => {
     setLoading(true);
-    // const response = await setWebToken(id);
-    // console.log(response);
-    // if(response?.error) showError(response?.error);
-    // else {
-    //   const link = config?.domain + '/reset_password?id=' + id + '&token=' + response?.ResetToken;
-    //   console.log(config?.domain)
-    //   const templateParams = { to: email?.trim(), link };
-    //   emailjs.send('service_k7osau8','template_6qxxzw8', templateParams, 'q2YX3XN0cT2C8g_Ni')
-    //     .then((response) => {
-    //       console.log('SUCCESS!', response.status,templateParams);
-    //       setSent(true);
-    //       setLoading(false);
-    //     }, (err) => {
-    //       console.log(err);
-    //       setError(err?.text ?? 'Error');
-    //       setLoading(false);
-    //     }
-    //   );
-    // }
+    const response = await setWebToken(id);
+    console.log(response);
+    if(response?.error) showError(response?.error);
+    else {
+      const link = config1?.domain + '/reset_password?id=' + id + '&token=' + response?.ResetToken;
+      console.log("555555555555", link)
+      const templateParams = { to: email?.trim(), link };
+      emailjs.send('service_k7osau8','template_6qxxzw8', templateParams, 'q2YX3XN0cT2C8g_Ni')
+        .then((response) => {
+          console.log('SUCCESS!', response.status,templateParams);
+          setSent(true);
+          setLoading(false);
+        }, (err) => {
+          console.log(err);
+          setError(err?.text ?? 'Error');
+          setLoading(false);
+        }
+      );
+    }
   }
   
-  const handleSubmit = async e => {
+const handleSubmit = async e => {
     e.preventDefault();
     setLoading(true);
     setSent(false);
-    // const response = await getWebsByEmail(email?.trim());
-    // console.log(response);
-    // if(response?.error) showError(response?.error);
-    // else if(response?.users) showList(response?.users);
-    // else sendEmail(response?.id);
-    // forgotPassword(email)
-    // .then(response => {
-    //     console.log(response)
-    // }).catch( e=> console.log(e.message))
+    const response = await getWebsByEmail(email?.trim());
+    console.log(response);
+    if(response?.error) showError(response?.error);
+    else if(response?.users) showList(response?.users);
+    else sendEmail(response?.id);
   }
 
-//   const onClose = async user => {
-//     setVisible(false);
-//     if(user) sendEmail(user?.id);
-//   }
-
-  const emailProps = { label: 'login.email', value: email, setValue: setEmail, setError };
-//   const listProps = { visible, list, onClose };
-
+const emailProps = { label: 'login.email', value: email, setValue: setEmail, setError };
   return (
     <div className='login_back_3'>
-      {/* {visible ? <ModalCompany {...listProps} /> : null} */}
       <img src={logo1_white} alt='Logo' className='login_form_logo3' />
       <div className='login_header_3'>
         <Language id='login_language_2' />
       </div>
       <form onSubmit={handleSubmit} className='login_form_3'>
         <p className='login_title_3'>{t('reset')}</p>
-        <Input {...emailProps} id='username' />
-        {error ? <Error error={error} id='login_error_3' /> : null}
+        <Input {...emailProps}  id='username'/>
+        {error ? <Error2 error={error} id='login_error_3' /> : null}
         <button type='submit' className='login_form_btn' id='login_form_btn3'>
           {loading ? <Loader className='login_loader' color='#fff' /> : t('send')}
         </button>

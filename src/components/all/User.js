@@ -11,8 +11,9 @@ import { vendor_pdf } from '../../assets';
 
 export function User(){
   const { t, i18n } = useTranslation();
-  const [user] = useAuthState(auth);
+  // const [user] = useAuthState(auth);
   const dispatch = useDispatch();
+  const user = useSelector(state => state.login?.user1);
 
   const menuStyle = {paddingTop: 5, paddingBottom: 5, borderRadius: 5};
 
@@ -23,6 +24,7 @@ export function User(){
   }
   const onPressLanguage = () => {
     i18n.changeLanguage(i18n?.language === 'mng' ? 'eng' : 'mng');
+    console.log(user)
   }
   const menu = (
     <Menu style={menuStyle}>

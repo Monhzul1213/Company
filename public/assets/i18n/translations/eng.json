@@ -4,6 +4,7 @@
     "email": "Email",
     "password": "Password",
     "logout": "Log out",
+    "conf_password": "Password /Confirm/",
     "link": "www.ultimate.mn",
     "signup":"Sign up",
     "user":"Username"

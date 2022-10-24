@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, createSearchParams } from 'react-router-dom';
 import {getUser} from '../../firebase';
-import { login } from '../../firebase';
+// import { login } from '../../firebase';
 
-import { login as setLogin } from '../../services/login.slice';
+import { login  } from '../../services/login.slice';
 import { config } from '../../helpers/login.config';
 import  logo1_white  from '../../assets/logo1_white.png';
 import { Error2, Language, Loader } from '../all';
@@ -26,18 +26,16 @@ export default function LoginNew(){
   const [tVisible, setTVisible] = useState(false);
   const [tResponse, setTResponse] = useState(null);
   const [checked, setChecked] = useState(false);
-  const user1 = useSelector(state => state.login.user1);
-  const webUser = useSelector(state => state.login.webUser);
+  const user = useSelector(state => state.login.user1);
   const toRemember = useSelector(state => state.login.toRemember);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
  useEffect(() => {
-    if(user1) setEmail(user1);
-    if(toRemember && webUser) setPassword(webUser);
+    if(user?.email) setEmail(user?.email);
+    if(toRemember && user?.password) setPassword(user?.password);
     if(toRemember) setChecked(true);
-    console.log('=========',user1)
-    console.log('=========',webUser)
+    console.log('=========',user)
 
     return () => {};
   }, []);
@@ -64,18 +62,14 @@ const handleEnter = e => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    login(email?.trim(), password?.trim())
-    .then(response => {
-      dispatch(setLogin({user: email , webUser: password, toRemember: checked}))
-        console.log(response)  
-      if(response?.error == 'auth/user-not-found'){
-        setError(t('errors.auth/user-not-found'));
-      }
-      else if(response?.error == 'auth/wrong-password'){
-        setError(t('errors.auth/wrong-password'));
-      }
+    const res = await getUser(email , password?.trim());
+    console.log(res.webUser) 
+    if(res?.error){
+      setError(res?.error);
       setLoading(false);
-    })
+    } else {
+      dispatch(login({user: res.webUser, toRemember: checked}))
+    }
     }
 
   const onForgot = () => {

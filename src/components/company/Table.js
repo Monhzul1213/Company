@@ -315,25 +315,17 @@ export const Table = (props) => {
       key: 'CreatedDate',
       align: 'center',
       ...getColumnSearchProps('CreatedDate'),
-      // sorter: (a, b) => new Date(a.CreatedDate) - new Date( b.CreatedDate),
-      // sortDirections: ['descend', 'ascend'],
-      accessor: 'CreatedDate',
-      // width: 0,
-      defaultSortOrder: "descend"
+      sorter: (a, b) => new Date(a.CreatedDate) - new Date( b.CreatedDate),
+      sortDirections: ['descend', 'ascend'],
+      defaultSortOrder: 'descend'
     },
   ];
  
 
   return <AntTable columns={columns} dataSource={data}
   onChange={handleChange}
- 
   onRow={(record, rowIndex) => {
     return {
-      // onClick: event => {
-      //   setVisible(true)
-      //   setSelected(rowIndex?.original);
-        
-      // }, // click row
       onDoubleClick: event => {
         setVisible(true)
         setSelected(record);

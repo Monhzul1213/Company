@@ -35,8 +35,6 @@ function getUser(){
      .then(response=>{
       response.docs.map(doc => {
         let user = {...doc.data(), ...{ id: doc?.id }};
-        // let user1 = {...doc.data(), ...{ id: doc?.id }};
-        // console.log(user1)
         users.push(user);
         // users1.push(user1);
       })
@@ -64,7 +62,7 @@ const changeCpnyID = value => {
     setData1(value);
     let newData = originaldata?.filter(word => word.data1.toLowerCase().includes(data1.toLowerCase()) ) 
     // let originalData = data 
-    // console.log(originaldata)
+    console.log('originaldata', originaldata)
     setData(newData)
 }
   let overlayStyle = { overlay: base => ({...base, background: 'rgba(0, 0, 0, 0.2)'}) };
