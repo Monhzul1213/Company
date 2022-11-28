@@ -55,10 +55,7 @@
   clear: both;
   width: 100%;
 }
-.ant-table table {
-  /* max-width: 100%; */
-  width: auto;
-}
+
 .empty_back {
   display: flex;
   flex-flow: column;

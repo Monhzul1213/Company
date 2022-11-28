@@ -42,7 +42,7 @@ const sendEmail = async id => {
     console.log(response);
     if(response?.error) showError(response?.error);
     else {
-      const link = config1?.domain + '/reset_password?id=' + id + '&token=' + response?.ResetToken;
+      const link = config?.domain + '/reset_password?id=' + id + '&token=' + response?.ResetToken;
       console.log("555555555555", link)
       const templateParams = { to: email?.trim(), link };
       emailjs.send('service_k7osau8','template_6qxxzw8', templateParams, 'q2YX3XN0cT2C8g_Ni')
@@ -89,7 +89,7 @@ const emailProps = { label: 'login.email', value: email, setValue: setEmail, set
           <p className='sent_text'>{t('sent')}</p>
         </div>}
         <div className='rback_row'>
-          <Link to='/' className='rback_link'>
+          <Link to='/company' className='rback_link'>
             <DynamicAIIcon className='rback_icon' name='AiOutlineArrowLeft' />
             <span className='rback_text'>{t('back')}</span>
           </Link>

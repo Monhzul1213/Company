@@ -55,7 +55,7 @@ export function PasswordReset(){
       if(response?.error) setError(response?.error);
       else {
         setSuccess(true);
-        setTimeout(() => navigate('/'), 1800);
+        setTimeout(() => navigate('/company'), 1800);
       }
       setLoading(false);
     } else setError(t('pass_match'));
@@ -83,7 +83,7 @@ export function PasswordReset(){
           <p className='sent_text'>{t('pass_success')}</p>
         </div>}
         <div className='rback_row'>
-          <Link to='/' className='rback_link'>
+          <Link to='/company' className='rback_link'>
             <DynamicAIIcon className='rback_icon' name='AiOutlineArrowLeft' />
             <span className='rback_text'>{t('login.login')}</span>
           </Link>

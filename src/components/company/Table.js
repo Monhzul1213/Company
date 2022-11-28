@@ -5,6 +5,7 @@ import 'antd/dist/antd.css';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table as AntTable } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { useDimensions } from '../../helpers/useDimensions';
 import '../../css/table.css'
 
 import Highlighter from 'react-highlight-words';
@@ -15,6 +16,8 @@ export const Table = (props) => {
   const [filteredInfo, setFilteredInfo] = useState({});
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
+  const { height } = useDimensions();
+
   const { t } = useTranslation();
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -133,7 +136,7 @@ export const Table = (props) => {
       dataIndex: 'CpnyID',
       key: 'CpnyID',
       ...getColumnSearchProps('CpnyID'),
-      
+      width: 120
     },
     {
       title: t('table.company'), 
@@ -141,34 +144,28 @@ export const Table = (props) => {
       dataIndex: 'CpnyName',
       key: 'CpnyName',
       ...getColumnSearchProps('CpnyName'),
-      
+      width: 120
     },
     {
       title: t('user_email'),
       dataIndex: 'WebUserID',
       key: 'WebUserID',
-      // width: '20%',
       ...getColumnSearchProps('WebUserID'),
-      // accessor: 'WebUserID'
+      width: 200
     },
     {
       title: t('user_password'),
       dataIndex: 'WebPassword',
       key: 'WebPassword',
       ...getColumnSearchProps('WebPassword'),
-      // sorter: (a, b) => a.WebPassword.length - b.WebPassword.length,
-      // sortDirections: ['descend', 'ascend'],
-      // accessor: 'WebPassword'
+      width: 140
     },
     {
       title: t('login.email'),
       dataIndex: 'Email',
       key: 'Email',
       ...getColumnSearchProps('Email'),
-      // sorter: (a, b) => a.Email.length - b.Email.length,
-      // sortDirections: ['descend', 'ascend'],
-      // accessor: 'WebPassword'
-      
+      width: 200,
     },
     {
       title: t('table.phone'),
@@ -176,28 +173,22 @@ export const Table = (props) => {
       key: 'Phone',
       align: 'center',
       ...getColumnSearchProps('Phone'),
-      // sorter: (a, b) => a.Phone.length - b.Phone  .length,
-      // sortDirections: ['descend', 'ascend'],
-      // accessor: 'WebPassword'
+      width: 100
     },   
     {
       title: t('table.address'),
       dataIndex: 'Address',
       key: 'Address',
       ...getColumnSearchProps('Address'),
-      // sorter: (a, b) => a.Address.length - b.Address.length,
-      // sortDirections: ['descend', 'ascend'],
-      // accessor: 'WebPassword'
-    },  
+      width: 200
+    },
      {
       title: t('table.vendorCount'),
       dataIndex: 'VendorCount',
       key: 'VendorCount',
       align: 'center',
       ...getColumnSearchProps('VendorCount'),
-      // sorter: (a, b) => a.VendorCount.length - b.VendorCount.length,
-      // sortDirections: ['descend', 'ascend'],
-      // accessor: 'WebPassword'
+      width: 150
     },   
     {
       title: t('table.License'),
@@ -205,29 +196,21 @@ export const Table = (props) => {
       key: 'LicenseAmt',
       align: 'right',
       marginBottom: 20,
+      width: 120,
       ...getColumnSearchProps('LicenseAmt'),
-      sorter: (a, b) => a.LicenseAmt.length - b.LicenseAmt.length,
-      sortDirections: ['descend', 'ascend'],
-      accessor: 'LicenseAmt'
     },
     {
       title: t('table.webservice'),
       dataIndex: 'WebServiceURL',
       key: 'WebServiceURL',
       ...getColumnSearchProps('WebServiceURL'),
-      // sorter: (a, b) => a.WebServiceURL.length - b.WebServiceURL.length,
-      // sortDirections: ['descend', 'ascend'],
-      // accessor: 'WebPassword'
+      width: 120
     },
     {
       title: t('txntype'),
       dataIndex: 'TxnType',
       key: 'TxnType',
-      // ...getColumnSearchProps('TxnType'),
-      // sorter: (a, b) => a.TxnType.length - b.TxnType.length,
-      // sortDirections: ['descend', 'ascend'],
-      // accessor: 'WebPassword'
-    //  width: '20%',
+      width: 200,
       filters: [
         {
           text: 'Бараа материал : Багцлалт',
@@ -265,8 +248,6 @@ export const Table = (props) => {
       ],
       filteredValue: filteredInfo.TxnType || null,
       onFilter: (value, record) => record.TxnType.includes(value),
-      // sorter: (a, b) => a.name.length - b.name.length,
-      // sortOrder: sortedInfo.columnKey === 'name' ? sortedInfo.order : null,
       ellipsis: true,
     },  
      {
@@ -274,46 +255,37 @@ export const Table = (props) => {
       dataIndex: 'AppServerIP',
       key: 'AppServerIP',
       align: 'center',
+      width: 130,
       ...getColumnSearchProps('AppServerIP'),
-      // sorter: (a, b) => a.AppServerIP.length - b.AppServerIP.length,
-      // sortDirections: ['descend', 'ascend'],
-      // accessor: 'WebPassword'
     },
     {
       title: t('AppServer_Port'),
       dataIndex: 'AppServerLoginPort',
       key: 'AppServerLoginPort',
       align: 'center',
-
+      width: 120,
       ...getColumnSearchProps('AppServerLoginPort'),
-      // sorter: (a, b) => a.AppServerLoginPort.length - b.AppServerLoginPort.length,
-      // sortDirections: ['descend', 'ascend'],
-      // accessor: 'WebPassword'
     },
     {
       title: t('AppServer_UserID'),
       dataIndex: 'AppServerLoginUserID',
       key: 'AppServerLoginUserID',
       ...getColumnSearchProps('AppServerLoginUserID'),
-      // sorter: (a, b) => a.AppServerLoginUserID.length - b.AppServerLoginUserID.length,
-      // sortDirections: ['descend', 'ascend'],
-      // accessor: 'WebPassword'
+      width: 120,
     },
     {
       title: t('AppServer_UserPass'),
       dataIndex: 'AppServerLoginUserPass',
       key: 'AppServerLoginUserPass',
       ...getColumnSearchProps('AppServerLoginUserPass'),
-      
-      // sorter: (a, b) => a.AppServerLoginUserPass.length - b.AppServerLoginUserPass.length,
-      // sortDirections: ['descend', 'ascend'],
-      // accessor: 'WebPassword'
+      width: 130,
     },
     {
       title: t('Үүсгэсэн огноо'),
       dataIndex: 'CreatedDate',
       key: 'CreatedDate',
       align: 'center',
+      width: 120,
       ...getColumnSearchProps('CreatedDate'),
       sorter: (a, b) => new Date(a.CreatedDate) - new Date( b.CreatedDate),
       sortDirections: ['descend', 'ascend'],
@@ -323,7 +295,8 @@ export const Table = (props) => {
  
 
   return <AntTable columns={columns} dataSource={data}
-  onChange={handleChange}
+  onChange={handleChange} scroll={{ x: 'max-content', y: height - 260 , scrollToFirstRowOnChange: true
+  }} 
   onRow={(record, rowIndex) => {
     return {
       onDoubleClick: event => {
