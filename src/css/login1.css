@@ -19,7 +19,7 @@ input:-webkit-autofill:active{
   background-clip: text;
   -webkit-text-fill-color: var(--root-color);
   -moz-text-fill-color: var(--root-color);
-  text-fill-color: var(--root-color);
+  /* text-fill-color: var(--root-color); */
 }
 
 .login_container {
