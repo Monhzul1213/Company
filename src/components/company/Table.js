@@ -1,7 +1,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import 'antd/dist/antd.css';
-// import './index.css';
+import {moment} from 'moment';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table as AntTable } from 'antd';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +11,7 @@ import '../../css/table.css'
 import Highlighter from 'react-highlight-words';
 
 export const Table = (props) => {
-  const {data, setVisible, selected, setSelected, setData , CpnyID, setCpnyID} = props;
+  const {data, setVisible,  setSelected, } = props;
   const [searchText, setSearchText] = useState('');
   const [filteredInfo, setFilteredInfo] = useState({});
   const [searchedColumn, setSearchedColumn] = useState('');
@@ -278,18 +278,18 @@ export const Table = (props) => {
       dataIndex: 'AppServerLoginUserPass',
       key: 'AppServerLoginUserPass',
       ...getColumnSearchProps('AppServerLoginUserPass'),
-      width: 130,
+      width: 140,
     },
     {
-      title: t('Үүсгэсэн огноо'),
+      title: 'Үүсгэсэн огноо',
       dataIndex: 'CreatedDate',
       key: 'CreatedDate',
       align: 'center',
       width: 120,
-      ...getColumnSearchProps('CreatedDate'),
-      sorter: (a, b) => new Date(a.CreatedDate) - new Date( b.CreatedDate),
-      sortDirections: ['descend', 'ascend'],
-      defaultSortOrder: 'descend'
+      // ...getColumnSearchProps('CreatedDate'),
+      sorter: (a, b) => new Date(a.CreatedDate)- new Date( b.CreatedDate),
+      // sortDirections: ['descend', 'ascend'],
+      // defaultSortOrder: 'descend'
     },
   ];
  
