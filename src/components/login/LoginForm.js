@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-
 import { logo2 } from '../../assets';
 import { login } from '../../firebase';
-// import { login } from '../../services';
 
 import { Error, Loader, Language } from '../all';
 import { Input } from './';
@@ -15,7 +12,6 @@ export default function LoginForm(){
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
 
   const handleEnter = e => {
     if (e?.key?.toLowerCase() === "enter") {

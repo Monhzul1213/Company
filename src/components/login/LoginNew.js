@@ -6,10 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, createSearchParams } from 'react-router-dom';
 import {getUser} from '../../firebase';
-// import { login } from '../../firebase';
 
 import { login  } from '../../services/login.slice';
-import { config } from '../../helpers/login.config';
 import  logo1_white  from '../../assets/logo1_white.png';
 import { Error2, Language, Loader } from '../all';
 import { Input } from './Input';
@@ -21,10 +19,6 @@ export default function LoginNew(){
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [list, setList] = useState([]);
-  const [visible, setVisible] = useState(false);
-  const [tVisible, setTVisible] = useState(false);
-  const [tResponse, setTResponse] = useState(null);
   const [checked, setChecked] = useState(false);
   const user = useSelector(state => state.login.user1);
   const toRemember = useSelector(state => state.login.toRemember);
@@ -49,15 +43,7 @@ const handleEnter = e => {
     }
   }
 
-  const showError = error => {
-    setError(error);
-    setLoading(false);
-  }
- const showList = users => {
-    setVisible(true);
-    setList(users);
-    setLoading(false)
-  }
+  
   const handleSubmit = async e => {
     e.preventDefault();
     setLoading(true);

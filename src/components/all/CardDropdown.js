@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
 import { useTranslation } from 'react-i18next';
@@ -34,11 +34,10 @@ import { Error } from './Error';
   
   }
 export function CardDropdown(props){
-  const { label, value, setValue, handleEnter,onFocus,  disabled, id } = props;
+  const { label, value, setValue, } = props;
   const { t } = useTranslation();
 
   const onChange = e => {
-    console.log('----------', e, '------');
     setValue({value: e});
   };
 
@@ -47,8 +46,6 @@ export function CardDropdown(props){
       { label: "Бараа материал : Тохируулга", value: 'INAJ' },
       {label: "Бараа материал : Зарлага", value: 'INII' },
       {label: "Бараа материал : Тооллого", value: 'INPI' },
-      // { label: "Бараа материал : Орлого", value: 'INRC' },
-      // { label: "Бараа материал : Шилжүүлэг", value: 'INTR' },
       { label: "Борлуулалт : Буцаалтын орлого", value: 'PSCM' },
       { label: "Борлуулалт : Зарлага", value: 'PSIN' }
     ];

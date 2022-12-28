@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Modal , message} from 'antd';
 import { useTranslation } from 'react-i18next';
-import {addDoc, collection , where, query, doc, setDoc, updateDoc, getDocs} from 'firebase/firestore';
+import {addDoc, collection , where, query, doc, setDoc, getDocs} from 'firebase/firestore';
 import {db} from '../../firebase'
 import { formatNumber } from '../../helpers';
 import '../../css/card.css';
-import moment, { isDate } from 'moment';
+import moment from 'moment';
 import { Cardlength, CardInput, CardInput1, CardNote, Loader, DynamicAIIcon, Error1, CardDropdown } from '../all';
 
 export function Card(props){
-  const { visible, selected, data, onClose, } = props;
+  const { visible, selected,  onClose, } = props;
   const { t } = useTranslation();
   const [disabled, setDisabled] = useState();
   const [error, setError] = useState(null);
@@ -31,11 +31,7 @@ export function Card(props){
   const [Address, setAddress] = useState({  error: null });
   const [Email, setEmail] = useState(null);
   const [AppServerLoginPort, setAppServerLoginPort] = useState({  error: null });
-  const [CreatedProgID, setCreatedProgID] = useState({ value: '', error: null });
   const [ CreatedDate, setCreatedDate] = useState({ value: '', error: null });
-  const [CreatedUserName, setCreatedUserName] = useState({ value: '', error: null });
-  const [LastUpdate, setLastUpdate] = useState({ value: '', error: null });
-  const [LastUserName, setLastUserName] = useState({ value: '', error: null });
   const [TxnType, setTxnType] = useState({ value: '', error: null });
 
  
@@ -70,9 +66,9 @@ export function Card(props){
       const list = [];
       const typeList = selected?.TxnType?.split(',');
       console.log(typeList)
-      typeList?.map(item => {
+      typeList?.forEach(item => {
         let option = Options?.filter(opt => opt.value === item)[0]
-        if(option?.value == item){
+        if(option?.value === item){
           list.push(option)
         }
         console.log(item)  
@@ -87,16 +83,20 @@ export function Card(props){
 async function handleSubmit  (e){
     e.preventDefault()
     let text = LicenseAmt?.value?.replace(/[^0-9]/g, '');
-    let txnType = [];
-    TxnType?.value?.map(item => {
-      txnType.push(item?.value)
-    }) 
-    console.log(txnType)
-   
-  if(WebUserID?.value && isValidEmail(WebUserID?.value) && CpnyID?.value&& CpnyName?.value && WebPassword?.value &&AppServerIP?.value && checkIfValidIP(AppServerIP?.value) &&VendorCount?.value && !isNaN(VendorCount?.value)  && !isNaN(text) &&WebServiceURL?.value &&AppServerLoginUserID?.value &&AppServerLoginUserPass?.value &&Phone?.value && !isNaN(Phone?.value) &&Address?.value &&AppServerLoginPort?.value && AppServerVersion?.value&&  Email?.value && isValidEmail(Email?.value) && TxnType?.value ){
+    
+  if(WebUserID?.value && isValidEmail(WebUserID?.value) && CpnyID?.value && CpnyName?.value && WebPassword?.value &&AppServerIP?.value 
+  && checkIfValidIP(AppServerIP?.value) &&VendorCount?.value && !isNaN(VendorCount?.value)  && !isNaN(text) 
+  &&WebServiceURL?.value &&AppServerLoginUserID?.value &&AppServerLoginUserPass?.value 
+  &&Phone?.value && !isNaN(Phone?.value) &&Address?.value &&AppServerLoginPort?.value &&
+   AppServerVersion?.value&&  Email?.value && isValidEmail(Email?.value) && TxnType?.value 
+   ){
       setLoader(true);
       setError(null);
     // requests[0].RequestID = selected.RequestID;
+      let txnType = [];
+      TxnType?.value?.forEach(item => {
+      txnType.push(item?.value)
+    })
       let obj ={ CpnyID: CpnyID?.value ,
         CpnyName: CpnyName?.value, 
         WebUserID:WebUserID?.value.toLowerCase(), 
@@ -130,11 +130,11 @@ async function handleSubmit  (e){
       const query1 = await getDocs(q1)
       let exists = null;
       query1.forEach(doc => exists = doc.data());
-      console.log(exists)
       if(exists) setError("Хэрэглэгч бүртгэлтэй байна")
       else {
        obj.CreatedDate = moment().format('yyyy.MM.DD, HH:mm:ss')
        addDoc(userCollRef, obj )
+       console.log(obj, userCollRef)
        onClose(true)
        message.success(t('request_success'));
       }
@@ -143,14 +143,14 @@ async function handleSubmit  (e){
   }
    else {
     if(!WebUserID?.value) setWebUserID({ error: 'is_empty'});
-    if(!WebPassword) setWebPassword({value: '', error: 'is_empty'});
+    if(!WebPassword?.value) setWebPassword({value: '', error: 'is_empty'});
     if(!CpnyID?.value) setCpnyID({value: '', error: 'is_empty'});
     if(!CpnyName?.value) setCpnyName({value: '', error: 'is_empty'});
     if(!VendorCount?.value) setVendorCount({value: '', error: 'is_empty'});
     if(!LicenseAmt?.value) setLicenseAmt({value: '', error: 'is_empty'});
     if(!WebServiceURL?.value) setWebServiceURL({value: '', error: 'is_empty'});
     if(!AppServerLoginUserID?.value) setAppServerLoginUserID({value: '', error: 'is_empty'});
-    if(!AppServerLoginUserPass) setAppServerLoginUserPass({value: '', error: 'is_empty'});
+    if(!AppServerLoginUserPass?.value) setAppServerLoginUserPass({value: '', error: 'is_empty'});
     if(!Phone?.value) setPhone({value: '', error: 'is_empty'});
     if(!Address?.value) setAddress({value: '', error: 'is_empty'});
     if(!AppServerLoginPort?.value) setAppServerLoginPort({value: '', error: 'is_empty'});

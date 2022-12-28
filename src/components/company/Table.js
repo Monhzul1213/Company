@@ -1,7 +1,5 @@
 
-import React, { useRef, useState, useEffect } from 'react';
-import 'antd/dist/antd.css';
-import {moment} from 'moment';
+import React, { useRef, useState } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table as AntTable } from 'antd';
 import { useTranslation } from 'react-i18next';
@@ -302,7 +300,6 @@ export const Table = (props) => {
       onDoubleClick: event => {
         setVisible(true)
         setSelected(record);
-        console.log(record)
       }, 
     };
   }}  />;
