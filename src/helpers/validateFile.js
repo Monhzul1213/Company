@@ -8,7 +8,7 @@ export const checkMimeType = file => {
   
     if(err !== '') return err; 
     else return checkFileSize(file);
-    return false;
+    // return false;
   }
   
   export const checkFileSize = file => {

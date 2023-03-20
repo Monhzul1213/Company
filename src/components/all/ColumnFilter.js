@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { DynamicAIIcon } from './DynamicIcon';
 
 export const ColumnFilter =({column}) =>{

@@ -5,13 +5,12 @@ import { Button, Input, Space, Table as AntTable } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useDimensions } from '../../helpers/useDimensions';
 import '../../css/table.css'
-
+import moment from 'moment'
 import Highlighter from 'react-highlight-words';
 
 export const Table = (props) => {
   const {data, setVisible,  setSelected, } = props;
   const [searchText, setSearchText] = useState('');
-  const [filteredInfo, setFilteredInfo] = useState({});
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
   const { height } = useDimensions();
@@ -28,16 +27,15 @@ export const Table = (props) => {
     clearFilters();
     setSearchText('');
   };
-  const handleChange = (pagination, filters, sorter) => {
-    console.log('Various parameters', pagination, filters, sorter);
-    setFilteredInfo(filters);
-  };
+
+
   const getColumnSearchProps = (dataIndex) => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
       <div
         style={{
           padding: 8,
         }}
+        onKeyDown={(e) => e.stopPropagation()}
       >
         <Input
           ref={searchInput}
@@ -60,39 +58,39 @@ export const Table = (props) => {
               width: 90,
             }}
           >
-            Search
+            {t('search')}
           </Button>
           <Button
-         
+            onClick={() => clearFilters && handleReset(clearFilters)}
             size="small"
             style={{
               width: 90,
             }}
-            onClick={() => {
-              confirm({
-                closeDropdown: false,
-              });
-            clearFilters && 
-            handleReset(clearFilters)
-            setSearchText(selectedKeys[0]);
-            setSearchedColumn(dataIndex);
-            }}
           >
             Reset
           </Button>
-          {/* <Button
+          <Button
             type="link"
             size="small"
             onClick={() => {
               confirm({
                 closeDropdown: false,
               });
-            setSearchText(selectedKeys[0]);
-            setSearchedColumn(dataIndex);
+              setSearchText(selectedKeys[0]);
+              setSearchedColumn(dataIndex);
             }}
           >
             Filter
-          </Button> */}
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              close();
+            }}
+          >
+            {t('close')}
+          </Button>
         </Space>
       </div>
     ),
@@ -105,9 +103,9 @@ export const Table = (props) => {
     ),
     onFilter: (value, record) =>
       record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
-
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
+        console.log(visible)
         setTimeout(() => searchInput.current?.select(), 100);
       }
     },
@@ -125,12 +123,11 @@ export const Table = (props) => {
       ) : (
         text
       ),
+      
   });
-
   const columns = [
     {
       title: t('print.company'), 
-      // accessor: 'CpnyID' ,
       dataIndex: 'CpnyID',
       key: 'CpnyID',
       ...getColumnSearchProps('CpnyID'),
@@ -138,7 +135,6 @@ export const Table = (props) => {
     },
     {
       title: t('table.company'), 
-      // accessor: 'CpnyID' ,
       dataIndex: 'CpnyName',
       key: 'CpnyName',
       ...getColumnSearchProps('CpnyName'),
@@ -209,44 +205,7 @@ export const Table = (props) => {
       dataIndex: 'TxnType',
       key: 'TxnType',
       width: 200,
-      filters: [
-        {
-          text: 'Бараа материал : Багцлалт',
-          value: 'INAS',
-        },
-        {
-          text: 'Бараа материал : Тохируулга',
-          value: 'INAJ',
-        },
-        {
-          text: 'Бараа материал : Зарлага',
-          value: 'INII',
-        },
-        
-        {
-          text: 'Бараа материал : Тооллого',
-          value: 'INPI',
-        },
-        {
-          text: 'Бараа материал : Орлого',
-          value: 'INRC',
-        },
-        {
-          text: 'Бараа материал : Шилжүүлэг',
-          value: 'INTR',
-        },
-        {
-          text: 'Борлуулалт : Буцаалтын орлого',
-          value: 'PSCM',
-        },
-        {
-          text: 'Борлуулалт : Зарлага',
-          value: 'PSIN',
-        },
-      ],
-      filteredValue: filteredInfo.TxnType || null,
-      onFilter: (value, record) => record.TxnType.includes(value),
-      ellipsis: true,
+      
     },  
      {
       title: t('AppServer_IP'),
@@ -284,16 +243,18 @@ export const Table = (props) => {
       key: 'CreatedDate',
       align: 'center',
       width: 120,
-      // ...getColumnSearchProps('CreatedDate'),
-      sorter: (a, b) => new Date(a.CreatedDate)- new Date( b.CreatedDate),
-      // sortDirections: ['descend', 'ascend'],
-      // defaultSortOrder: 'descend'
+      sorter: {
+        compare: (a, b) =>
+          moment(a.CreatedDate, "yyyy.MM.DD, HH:mm:ss") - moment(b.CreatedDate, "yyyy.MM.DD, HH:mm:ss"),
+      },
+      sortDirections: ['descend', 'ascend'],
+      defaultSortOrder: 'descend',
     },
   ];
  
 
   return <AntTable columns={columns} dataSource={data}
-  onChange={handleChange} scroll={{ x: 'max-content', y: height - 260 , scrollToFirstRowOnChange: true
+scroll={{ x: 'max-content', y: height - 260 , scrollToFirstRowOnChange: true
   }} 
   onRow={(record, rowIndex) => {
     return {

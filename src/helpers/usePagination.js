@@ -35,6 +35,7 @@ export const usePagination = ({ totalPageCount, pageSize, siblingCount = 1, curr
       let middleRange = range(leftSiblingIndex, rightSiblingIndex);
       return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
     }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageSize, siblingCount, currentPage, totalPageCount]);
 
   return paginationRange;

@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Filter, Table,Card } from '../components/company';
 import { Header } from '../components/menu/Header';
-import { useSelector, useDispatch } from 'react-redux';
-import {collection, doc, getDocs} from 'firebase/firestore'
+import {collection, getDocs} from 'firebase/firestore'
 import {db} from '../firebase'
 import{Empty, Error} from '../components/all'
 import '../css/list.css'
 import { useDimensions } from '../helpers/useDimensions';
 import LoadingOverlay from 'react-loading-overlay';
-import { lowerCase } from 'lodash';
-// import {  addDoc ,updateDoc, collection, doc} from 'firebase/firestore';
-// import {db} from '../firebase'
  LoadingOverlay.propTypes = undefined;
 export function Company(){
   const { height } = useDimensions();
@@ -18,25 +14,21 @@ export function Company(){
   const [data, setData] = useState([]);
   const [originaldata, setOriginalData] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState(null);
   const [visible, setVisible] = useState(false);
 
   const addRequest = () => {
-      // setError(null);
       setVisible(true);
       setSelected(null)
   }
 function getUser(){
     let users = []
-    // let users1 = []
     const userCollectionRef =collection(db, 'smWebUsers')
      getDocs(userCollectionRef )
      .then(response=>{
-      response.docs.map(doc => {
+      response.docs.forEach(doc => {
         let user = {...doc.data(), ...{ id: doc?.id }};
         users.push(user);
-        // users1.push(user1);
       })
       setData(users)
       setOriginalData(users)
@@ -58,19 +50,15 @@ function getUser(){
   } 
 
 const changeCpnyID = value => {
-    // console.log(value);
     setData1(value);
     let newData = originaldata?.filter(word => word.data1.toLowerCase().includes(data1.toLowerCase()) ) 
-    // let originalData = data 
     console.log('originaldata', originaldata)
     setData(newData)
 }
-  let overlayStyle = { overlay: base => ({...base, background: 'rgba(0, 0, 0, 0.2)'}) };
   let cardProps = { visible, setVisible, selected, setSelected,  setData, data1, setData1: changeCpnyID };
   let filterProps = { addRequest, setData,  setError , setVisible, data1, setData1: changeCpnyID };
   return (
     <>
-     {/* <LoadingOverlay active={loading} spinner styles={overlayStyle}> */}
           <Header/>
           <div className='page_container' style={{height: height - 58}}>
            {visible ? <Card onClose={onClose} {...cardProps} />: null}
@@ -83,7 +71,6 @@ const changeCpnyID = value => {
              </div>
             </div>
           </div>
-          {/* </LoadingOverlay> */}
         </>
     
     )

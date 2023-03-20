@@ -32,6 +32,7 @@ export default function LoginNew(){
     console.log('=========',user)
 
     return () => {};
+        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 const handleEnter = e => {

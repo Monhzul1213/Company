@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut , onAuthStateChanged, sendPasswordResetEmail} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signOut , onAuthStateChanged,} from "firebase/auth";
 import { useEffect, useState } from "react";
-import { getFirestore, collection, addDoc, getDocs, updateDoc, setDoc, query, where, doc, getDoc , limit} from "firebase/firestore";
-import { config1, config, randomtoken } from './helpers'
+import { getFirestore, collection, getDocs, updateDoc, query, where, doc, getDoc , limit} from "firebase/firestore";
+import {  config, randomtoken } from './helpers'
 import { createContext } from "react";
 import { useContext } from "react";
 
@@ -12,9 +12,7 @@ const AuthContext = createContext({
 })
 export  const useAuth1 = () => useContext(AuthContext)
 
-// const value ={
-//   forgotPassword
-// }
+
 const app = initializeApp(config?.firebaseConfig);
 export const db = getFirestore(app);
 
@@ -39,7 +37,7 @@ export function useAuth(){
    const unsub = onAuthStateChanged(auth, curuser=> setUser(curuser));
     console.log(user)
     return unsub;
-  
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return user;
 }
@@ -57,8 +55,6 @@ export const getUser = async (email, password) => {
     } else if(webUser?.password !== password){
       return Promise.resolve({ error: 'Хэрэглэгчийн нууц үг буруу байна.' })
     } 
-      // console.log(webUser)
-      // return Promise.resolve({webUser})
       else return Promise.resolve({ error: false, webUser });
     
   } catch (err) {

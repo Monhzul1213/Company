@@ -1,10 +1,9 @@
 import React from 'react';
 import { Menu, Dropdown } from 'antd';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { auth, logout } from '../../firebase';
+import { logout } from '../../firebase';
 import { logout as apiLogout } from '../../services';
 import { DynamicMDIcon, DynamicAIIcon } from './DynamicIcon';
 import { vendor_pdf } from '../../assets';

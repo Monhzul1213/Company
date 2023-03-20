@@ -5,9 +5,9 @@ import emailjs from '@emailjs/browser';
 import '../css/login1.css';
 import { getWebsByEmail, setWebToken } from '../firebase';
 import  logo1_white  from '../assets/logo1_white.png';
-import { DynamicAIIcon, Error2, Error, Language, Loader } from '../components/all';
+import { DynamicAIIcon, Error2, Language, Loader } from '../components/all';
 import { Input } from '../components/login';
-import { config1, config } from '../helpers/login.config';
+import {  config } from '../helpers/login.config';
 
 export function PasswordForgot(){
   const { t } = useTranslation();
@@ -23,6 +23,7 @@ useEffect(() => {
     let email = searchParams?.get('email');
     setEmail(email ?? '');
     return () => {};
+        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 const showError = error => {

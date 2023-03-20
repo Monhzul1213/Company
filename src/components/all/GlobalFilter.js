@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { DynamicAIIcon } from './DynamicIcon';
 
