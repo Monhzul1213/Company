@@ -46,7 +46,10 @@ export const constantsSlice = createSlice({
     },
     setReturns: (state, action) => {
       state.salesReturns = action.payload;
-    }
+    },
+    setIsLoggedIn: (state, action) => {
+      state.loggedIn = action.payload;
+    },
   }
 });
 
@@ -234,6 +237,6 @@ function fetchRetrySend(url, token, data, retries = 0) {
 }
 
 export const { setInventoryCategories, setSites, setVendors, setOrderStatus, setReturnStatus, setOrders, setReturns, setInventoryStatus,
-  setReceivableStatus } = constantsSlice.actions;
+  setReceivableStatus, setIsLoggedIn } = constantsSlice.actions;
 
 export const constantsReducer = constantsSlice.reducer;

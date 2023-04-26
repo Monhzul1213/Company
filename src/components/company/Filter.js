@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../css/filter.css';
-import {AddButton } from '../all';
+import { AddButton } from '../all';
 
 export function Filter(props){
   const {  addRequest} = props;

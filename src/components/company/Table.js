@@ -254,8 +254,8 @@ export const Table = (props) => {
  
 
   return <AntTable columns={columns} dataSource={data}
-scroll={{ x: 'max-content', y: height - 260 , scrollToFirstRowOnChange: true
-  }} 
+  pagination={{ defaultPageSize: 50, showSizeChanger: true, pageSizeOptions: ['50', '100', '150']}}  
+  scroll={{ x: 'max-content', y: height - 260 , scrollToFirstRowOnChange: false }} 
   onRow={(record, rowIndex) => {
     return {
       onDoubleClick: event => {

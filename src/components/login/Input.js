@@ -16,12 +16,13 @@ export function Input(props){
   return (
     <div className='login_input_container3'>
       {isPassword
-        ? <AntInput.Password {...inputProps} className='pass'/>
+        ? <AntInput.Password {...inputProps} className = 'pass' />
         : <div className='login_input_back3'><AntInput {...inputProps} id={id} /></div>
       }
     </div>
 
   )
+  
 
  
 }

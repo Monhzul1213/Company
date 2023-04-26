@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, signOut , onAuthStateChanged,} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signOut , onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { getFirestore, collection, getDocs, updateDoc, query, where, doc, getDoc , limit} from "firebase/firestore";
-import {  config, randomtoken } from './helpers'
+import { getFirestore, collection, getDocs, updateDoc, query, where, doc, getDoc , limit } from "firebase/firestore";
+import { config, randomtoken } from './helpers'
 import { createContext } from "react";
 import { useContext } from "react";
 
@@ -10,8 +10,8 @@ const AuthContext = createContext({
   currentUser: null,
   forgotPassword: () => Promise
 })
-export  const useAuth1 = () => useContext(AuthContext)
 
+export  const useAuth1 = () => useContext(AuthContext)
 
 const app = initializeApp(config?.firebaseConfig);
 export const db = getFirestore(app);

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Modal , message} from 'antd';
 import { useTranslation } from 'react-i18next';
-import {addDoc, collection , where, query, doc, setDoc, getDocs} from 'firebase/firestore';
-import {db} from '../../firebase'
+import { addDoc, collection , where, query, doc, setDoc, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase'
 import { formatNumber } from '../../helpers';
 import '../../css/card.css';
 import moment from 'moment';
@@ -19,7 +19,6 @@ export function Card(props){
   const [WebUserID, setWebUserID] = useState({ value: '', error: null });
   const [WebPassword, setWebPassword] = useState({ value: '', error: null });
   const [AppServerIP, setAppServerIP] = useState('');
-  const [VendID, setVendID] = useState( { value: '', error: null } );
   const [VendorCount, setVendorCount] = useState({ value: '', error: null });
   const [UseVendorCount, setUseVendorCount] = useState('');
   const [LicenseAmt, setLicenseAmt] = useState({ value: '', error: null });
@@ -41,7 +40,6 @@ export function Card(props){
     setCpnyName({ value: selected?.CpnyName ??'' });
     setWebUserID({ value: selected?.WebUserID ?? '' })
     setWebPassword({ value: selected?.WebPassword ?? ''   })
-    setVendID({ value: selected?.VendID ?? '' })
     setVendorCount({ value: selected?.VendorCount ?? '' })
     setUseVendorCount({value: formatNumber(selected?.UseVendorCount) })
     setWebServiceURL({ value: selected?.WebServiceURL ?? '' })
@@ -77,14 +75,13 @@ export function Card(props){
     }
     setDisabled(disabled);
     return () => {};
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
 
  
 async function handleSubmit  (e){
-    e.preventDefault()
-    let text = LicenseAmt?.value?.replace(/[^0-9]/g, '');
-    
+  e.preventDefault()
+  let text = LicenseAmt?.value?.replace(/[^0-9]/g, '');
   if(WebUserID?.value && isValidEmail(WebUserID?.value) && CpnyID?.value && CpnyName?.value && WebPassword?.value &&AppServerIP?.value 
   && checkIfValidIP(AppServerIP?.value) &&VendorCount?.value && !isNaN(VendorCount?.value)  && !isNaN(text) 
   &&WebServiceURL?.value &&AppServerLoginUserID?.value &&AppServerLoginUserPass?.value 
@@ -93,7 +90,6 @@ async function handleSubmit  (e){
    ){
       setLoader(true);
       setError(null);
-    // requests[0].RequestID = selected.RequestID;
       let txnType = [];
       TxnType?.value?.forEach(item => {
       txnType.push(item?.value)
@@ -135,7 +131,6 @@ async function handleSubmit  (e){
       else {
        obj.CreatedDate = moment().format('yyyy.MM.DD, HH:mm:ss')
        addDoc(userCollRef, obj )
-       console.log(obj, userCollRef)
        onClose(true)
        message.success(t('request_success'));
       }

@@ -7,7 +7,7 @@ import { getWebsByEmail, setWebToken } from '../firebase';
 import  logo1_white  from '../assets/logo1_white.png';
 import { DynamicAIIcon, Error2, Language, Loader } from '../components/all';
 import { Input } from '../components/login';
-import {  config } from '../helpers/login.config';
+import { config } from '../helpers/login.config';
 
 export function PasswordForgot(){
   const { t } = useTranslation();
@@ -15,8 +15,6 @@ export function PasswordForgot(){
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
-  const [list, setList] = useState([]);
-  const [visible, setVisible] = useState(false);
   const [searchParams] = useSearchParams();
 
 useEffect(() => {
@@ -32,8 +30,6 @@ const showError = error => {
   }
 
 const showList = users => {
-    setVisible(true);
-    setList(users);
     setLoading(false)
   }
 

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Filter, Table,Card } from '../components/company';
 import { Header } from '../components/menu/Header';
-import {collection, getDocs} from 'firebase/firestore'
-import {db} from '../firebase'
-import{Empty, Error} from '../components/all'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../firebase'
+import { Empty, Error } from '../components/all'
 import '../css/list.css'
 import { useDimensions } from '../helpers/useDimensions';
-import LoadingOverlay from 'react-loading-overlay';
- LoadingOverlay.propTypes = undefined;
+
 export function Company(){
   const { height } = useDimensions();
   const [data1, setData1] = useState('');

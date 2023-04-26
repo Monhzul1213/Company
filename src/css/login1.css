@@ -65,8 +65,6 @@ input:-webkit-autofill:active{
 
 .login_input_container3 {
   margin: 10px 0;
-  /* width: 320px; */
-  /* margin: var(--padding-mobile) 0; */
 }
 
 .login_input_label {
@@ -88,40 +86,22 @@ input:-webkit-autofill:active{
   display: flex;
   position: relative;
   background-color: #ffffff33;
-  /* background-color: var(--hover2-color); */
   border-radius: 40px;
 }
 
 .login_input_back:focus-within {
   display: flex;
   position: relative;
-  /* background-color: var(--danger-color); */
   border-radius: var(--radius);
 }
-/* .pass:focus {
-  background-color: rgba(0, 0, 0, 0);
-  border-width: 1px;
-  border-style: solid;
-  border-color: #ffffff66;
-  border-radius: 40px;
-  -webkit-box-shadow: 0 0 3px 2px var(--link-color2);
-  -moz-box-shadow: 0 0 3px 2px var(--link-color2);
-  box-shadow: 0 0 3px 2px var(--link-color2);
-}
 
-
-
-.pass {
-  border: none;
+#username{
+  all: unset;
   height: var(--height);
   flex: 1;
   border-radius: 40px;
-  color: var(--root-color);
   font-size: 16px;
   padding: 0 15px;
-  background-color: #ffffff33;
-} */
-#username{
     color: var(--root-color);
 }
 .ant-input {
@@ -129,12 +109,8 @@ input:-webkit-autofill:active{
   height: var(--height);
   flex: 1;
   border-radius: 40px;
-  /* border-radius: var(--radius); */
-  /* color: var(--text-color); */
-  /* color: var(--root-color); */
   font-size: 16px;
   padding: 0 15px;
-  /* background-color: var(--hover2-color); */
 }
 .pass {
   border: none;
@@ -151,29 +127,15 @@ input:-webkit-autofill:active{
   border-style: solid;
   border-color: #ffffff66;
   border-radius: 40px;
-  /* border-radius: var(--radius); */
   -webkit-box-shadow: 0 0 3px 2px var(--link-color2);
   -moz-box-shadow: 0 0 3px 2px var(--link-color2);
   box-shadow: 0 0 3px 2px var(--link-color2);
 }
-.ant-input-password {
-  border: none;
-  height: var(--height);
-  flex: 1;
-  /* border-radius: var(--radius); */
-  border-radius: 40px;
-  color: var(--root-color);
-  /* color: var(--text-color); */
-  font-size: 16px;
-  padding: 0 15px;
-  background-color: #ffffff33;
-  /* background-color: var(--hover2-color); */
-}
+
 .login_input_icon {
   position: absolute;
   right: 10px;
   font-size: 24px;
-  /* color: var(--root-color); */
   color: var(--text-color2);
   height: var(--height);
 }
@@ -206,7 +168,6 @@ input:-webkit-autofill:active{
 }
 
 .copyright_text {
-  /* color: var(--text-color2); */
   color: var(--root-color1);
   font-size: 14px;
   text-align: center;
@@ -219,11 +180,9 @@ input:-webkit-autofill:active{
 
 .copyright_text:hover {
   color: var(--root-color);
-  /* color: var(--link-color); */
 }
 
 .copyright_text2 {
-  /* color: var(--text-color2); */
   color: var(--back-color);
   font-size: 14px;
   text-align: center;

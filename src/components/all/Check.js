@@ -2,14 +2,13 @@ import * as React from 'react';
 import { Checkbox, Row, Col } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Error } from './Error';
+
 export function Check(props) {
     const { label, value, setValue, } = props;
     const { t } = useTranslation();
 
-//   const onChange = e => setValue({ value: e?.target?.value, error: null });
  
   const onChange = (e) => {
-    console.log( e.target.value);
     setValue(e.target.value);
   };
   return (

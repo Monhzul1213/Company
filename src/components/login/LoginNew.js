@@ -5,8 +5,8 @@ import { Checkbox } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, createSearchParams } from 'react-router-dom';
-import {getUser} from '../../firebase';
-
+import { getUser } from '../../firebase';
+import '../../css/login1.css'
 import { login  } from '../../services/login.slice';
 import  logo1_white  from '../../assets/logo1_white.png';
 import { Error2, Language, Loader } from '../all';
@@ -29,10 +29,8 @@ export default function LoginNew(){
     if(user?.email) setEmail(user?.email);
     if(toRemember && user?.password) setPassword(user?.password);
     if(toRemember) setChecked(true);
-    console.log('=========',user)
-
     return () => {};
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 const handleEnter = e => {
@@ -44,7 +42,6 @@ const handleEnter = e => {
     }
   }
 
-  
   const handleSubmit = async e => {
     e.preventDefault();
     setLoading(true);
@@ -75,7 +72,7 @@ return (
       <form onSubmit={handleSubmit} className='login_form_3'>
         <p className='login_title_3'>{t('print.company')}</p>
         <Input {...nameProps} id='username'/>
-        <Input {...passProps} />
+        <Input {...passProps}  />
         {error ? <Error2 error={error} id='login_error_3' /> : null}
         <button type='submit' className='login_form_btn' id='login_form_btn3'>
           {loading ? <Loader className='login_loader' color='#fff' /> : t('login.login')}
@@ -85,7 +82,7 @@ return (
           <span className='forgot_link' onClick={onForgot}>{t('forgot')}</span> 
         </div>
         <Social />
-        <a className='copyright_text' target="_blank" href={'https://' + t('login.link')} id='copy'>{t('login.link')}</a>
+        <a className='copyright_text' target="blank" href={'https://' + t('login.link')} id='copy'>{t('login.link')}</a>
         <span className='copyright_text2'>2022</span>
       </form>
     </div>
