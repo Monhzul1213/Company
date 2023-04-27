@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PasswordForgot } from './pages/PasswordForgot';
 import { PasswordReset } from './pages/PasswordReset';
 import { useSelector, useDispatch } from 'react-redux';
-import 'antd/dist/antd.min.css';
+import 'antd/dist/antd.less';
 import { setIsLoggedIn } from './services';
 
 export function App(){
