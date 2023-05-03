@@ -14,7 +14,6 @@ export const Table = (props) => {
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
   const { height } = useDimensions();
-
   const { t } = useTranslation();
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -38,8 +37,9 @@ export const Table = (props) => {
         onKeyDown={(e) => e.stopPropagation()}
       >
         <Input
+          className='ant_search'
           ref={searchInput}
-          placeholder={`Search `}
+          placeholder={t('search')}
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
@@ -61,26 +61,21 @@ export const Table = (props) => {
             {t('search')}
           </Button>
           <Button
-            onClick={() => clearFilters && handleReset(clearFilters)}
+            type="primary"
             size="small"
             style={{
               width: 90,
             }}
-          >
-            Reset
-          </Button>
-          <Button
-            type="link"
-            size="small"
             onClick={() => {
+              clearFilters && handleReset(clearFilters)
               confirm({
                 closeDropdown: false,
               });
-              setSearchText(selectedKeys[0]);
-              setSearchedColumn(dataIndex);
+              // setSearchText(selectedKeys[0]);
+              setSearchedColumn(dataIndex );
             }}
           >
-            Filter
+            {t('filtered')}
           </Button>
           <Button
             type="link"
@@ -103,9 +98,9 @@ export const Table = (props) => {
     ),
     onFilter: (value, record) =>
       record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
-        console.log(visible)
         setTimeout(() => searchInput.current?.select(), 100);
       }
     },
@@ -123,8 +118,8 @@ export const Table = (props) => {
       ) : (
         text
       ),
-      
   });
+
   const columns = [
     {
       title: t('print.company'), 

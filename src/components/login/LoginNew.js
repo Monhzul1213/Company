@@ -47,7 +47,6 @@ const handleEnter = e => {
     setLoading(true);
     setError(null);
     const res = await getUser(email , password?.trim());
-    console.log(res.webUser) 
     if(res?.error){
       setError(res?.error);
       setLoading(false);

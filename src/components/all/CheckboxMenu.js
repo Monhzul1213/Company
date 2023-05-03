@@ -46,8 +46,6 @@ class CheckboxMenu extends React.Component {
         return e;
       });
 
-    console.log(groups);
-
     return (
       <Checkbox.Group onChange={this.onChange} value={this.state.selectedItems}>
         <Row>

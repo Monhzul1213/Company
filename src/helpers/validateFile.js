@@ -2,7 +2,6 @@ export const checkMimeType = file => {
     let err = ''
     const types = ['image/png', 'image/jpeg', 'image/gif']
     if(types.every(type => file.type !== type)){
-      console.log(file.type);
       err += file.type + ' формат буруу байна.';
     }
   

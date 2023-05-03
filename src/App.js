@@ -26,7 +26,6 @@ export function App(){
         dispatch(setIsLoggedIn(true));
       } else if(event.key === 'CREDENTIALS_FLUSH'){
         dispatch(setIsLoggedIn(false));
-        console.log('storage')
         window.sessionStorage.removeItem('CREDENTIALS_TOKEN');
       }
     });

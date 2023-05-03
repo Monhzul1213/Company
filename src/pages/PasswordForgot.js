@@ -36,19 +36,15 @@ const showList = users => {
 const sendEmail = async id => {
     setLoading(true);
     const response = await setWebToken(id);
-    console.log(response);
     if(response?.error) showError(response?.error);
     else {
       const link = config?.domain + '/reset_password?id=' + id + '&token=' + response?.ResetToken;
-      console.log("555555555555", link)
       const templateParams = { to: email?.trim(), link };
       emailjs.send('service_k7osau8','template_6qxxzw8', templateParams, 'q2YX3XN0cT2C8g_Ni')
         .then((response) => {
-          console.log('SUCCESS!', response.status,templateParams);
           setSent(true);
           setLoading(false);
         }, (err) => {
-          console.log(err);
           setError(err?.text ?? 'Error');
           setLoading(false);
         }
@@ -61,7 +57,6 @@ const handleSubmit = async e => {
     setLoading(true);
     setSent(false);
     const response = await getWebsByEmail(email?.trim());
-    console.log(response);
     if(response?.error) showError(response?.error);
     else if(response?.users) showList(response?.users);
     else sendEmail(response?.id);

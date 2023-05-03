@@ -32,7 +32,7 @@ function getUser(){
       setData(users)
       setOriginalData(users)
      })
-     .catch(error=> console.log(error.message))
+     .catch(error=> error.message)
   }
 
   useEffect(() => {
@@ -42,7 +42,6 @@ function getUser(){
 
   const onClose = toLoad => {
     setVisible(false);
-   
     if(toLoad){
        getUser()
     }
@@ -51,7 +50,6 @@ function getUser(){
 const changeCpnyID = value => {
     setData1(value);
     let newData = originaldata?.filter(word => word.data1.toLowerCase().includes(data1.toLowerCase()) ) 
-    console.log('originaldata', originaldata)
     setData(newData)
 }
   let cardProps = { visible, setVisible, selected, setSelected,  setData, data1, setData1: changeCpnyID };
@@ -65,7 +63,6 @@ const changeCpnyID = value => {
             {error ? <Error error={error} /> : null}
             <Filter {...filterProps} />            
             <div className='data_back' id='inventory_page'>
-             
             {data?.length ? <Table data={data} setData={setData} selected={selected} setVisible={setVisible} setSelected={setSelected} /> : <Empty />}
              </div>
             </div>

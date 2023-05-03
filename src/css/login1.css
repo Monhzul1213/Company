@@ -132,6 +132,15 @@ input:-webkit-autofill:active{
   -moz-box-shadow: 0 0 3px 2px var(--link-color2);
   box-shadow: 0 0 3px 2px var(--link-color2);
 }
+.ant_search {
+  border:  1px solid ;
+  height: var(--height);
+  flex: 1;
+  border-radius: 10px;
+  padding: 0 15px;
+  background-color: #ffffff33;
+  margin-left: 8px;
+}
 
 .login_input_icon {
   position: absolute;

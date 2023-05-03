@@ -63,13 +63,11 @@ export function Card(props){
     if(selected?.TxnType){
       const list = [];
       const typeList = selected?.TxnType?.split(',');
-      console.log(typeList)
       typeList?.forEach(item => {
         let option = Options?.filter(opt => opt.value === item)[0]
         if(option?.value === item){
           list.push(option)
         }
-        console.log(item)  
       })
       setTxnType({ value: list })
     }
@@ -116,7 +114,6 @@ async function handleSubmit  (e){
         LastUpdate:  moment().format('yyyy.MM.DD, HH:mm:ss')}
     if(selected){
       const userRef = doc(db, "smWebUsers", selected.id )
-        console.log(userRef)
         setDoc(userRef, obj)
         onClose(true);
         message.success(t('request_success'))

@@ -57,18 +57,13 @@ export const getList = (login, api, data, setFunction) => async dispatch => {
   const { token, user } = login;
   const url = initialState?.url;
   try {
-    console.log(url + api, token, data);
     const response = await fetchRetryPost(url + api, token, data);
-    console.log('----------', response);
     if(response?.error_code === 401){
       return dispatch(apiLogin(user?.username, user?.password)).then(async response1 => {
-        console.log('===========', response1);
         if(response1?.error)
           return response1;
         else {
-          console.log(url + api, response1?.token ?? token, data);
           const response2 = await fetchRetryPost(url + api, response1?.token ?? token, data);
-          console.log('++++++++++++', response2);
           if(response2?.error_code && response2?.error_code !== 200){
             return Promise.resolve({ error: response2?.description, error_code: response2?.error_code });
           } else {
@@ -92,18 +87,13 @@ export const getField = (login, api, setFunction) => async dispatch => {
   const { token, user } = login;
   const url = initialState?.url;
   try {
-    console.log(url + api, token)
     const response = await fetchRetry(url + api, token);
-    console.log('----------', response);
     if(response?.error_code === 401){
       return dispatch(apiLogin(user?.username, user?.password)).then(async response1 => {
-        console.log('===========', response1);
         if(response1?.error)
           return response1;
         else {
-          console.log(url + api, response1?.token ?? token);
           const response2 = await fetchRetry(url + api, response1?.token ?? token);
-          console.log('++++++++++++', response2);
           if(response2?.error_code && response2?.error_code !== 200){
             return Promise.resolve({ error: response2?.description, error_code: response2?.error_code });
           } else {
@@ -127,18 +117,13 @@ export const getConstants = (login, type, setFunction) => async dispatch => {
   const { token, user } = login;
   const url = initialState?.url;
   try {
-    console.log(url, token);
     const response = await fetchRetry(url + 'GetConstants?ConstType=' + type, token);
-    console.log('----------', response);
     if(response?.error_code === 401){
       return dispatch(apiLogin(user?.username, user?.password)).then(async response1 => {
-        console.log('===========', response1);
         if(response1?.error)
           return response1;
         else {
-          console.log(url, response1?.token ?? token);
           const response2 = await fetchRetry(url + 'GetConstants?ConstType=' + type, response1?.token ?? token);
-          console.log('++++++++++++', response2);
           if(response2?.error_code && response2?.error_code !== 200){
             return Promise.resolve({ error: response2?.description, error_code: response2?.error_code });
           } else {
@@ -162,18 +147,13 @@ export const sendRequest = (login, api, data) => async dispatch => {
   const { token, user } = login;
   const url = initialState?.url;
   try {
-    console.log(url + api, token, data);
     const response = await fetchRetrySend(url + api, token, data);
-    console.log('----------', response);
     if(response?.error_code === 401){
       return dispatch(apiLogin(user?.username, user?.password)).then(async response1 => {
-        console.log('===========', response1);
         if(response1?.error)
           return response1;
         else {
-          console.log(url + api, response1?.token ?? token, data);
           const response2 = await fetchRetrySend(url + api, response1?.token ?? token, data);
-          console.log('++++++++++++', response2);
           if(response2?.error_code && response2?.error_code !== 200){
             return Promise.resolve({ error: response2?.description, error_code: response2?.error_code });
           } else {
@@ -198,7 +178,6 @@ function fetchRetry(url, token, retries = 5) {
       return res?.data;
     }).catch(error => {
       if(error?.message === 'Network Error' && retries > 0){
-        console.log('retrying network', retries);
         return fetchRetry(url, token, retries - 1)
       } else {
         return Promise.resolve({ description: error?.message, error_code: 100 });
@@ -213,7 +192,6 @@ function fetchRetryPost(url, token, data, retries = 5) {
       return res?.data;
     }).catch(error => {
       if(error?.message === 'Network Error' && retries > 0){
-        console.log('retrying network', retries);
         return fetchRetryPost(url, token, data, retries - 1)
       } else {
         return Promise.resolve({ description: error?.message, error_code: 100 });
@@ -228,7 +206,6 @@ function fetchRetrySend(url, token, data, retries = 0) {
       return res?.data;
     }).catch(error => {
       if(error?.message === 'Network Error' && retries > 0){
-        console.log('retrying network', retries);
         return fetchRetrySend(url, token, data, retries - 1)
       } else {
         return Promise.resolve({ description: error?.message, error_code: 100 });

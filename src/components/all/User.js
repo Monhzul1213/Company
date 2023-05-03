@@ -19,11 +19,9 @@ export function User(){
   const onPressLogout = () => {
     logout();
     dispatch(apiLogout());
-    console.log(user)
   }
   const onPressLanguage = () => {
     i18n.changeLanguage(i18n?.language === 'mng' ? 'eng' : 'mng');
-    console.log(user)
   }
   const menu = (
     <Menu style={menuStyle}>

@@ -22,7 +22,6 @@ export const login = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    console.error( err );
     return Promise.resolve({ error: err.code });
   }
 };
@@ -35,14 +34,12 @@ export function useAuth(){
   const[user, setUser]= useState();
   useEffect(() =>{
    const unsub = onAuthStateChanged(auth, curuser=> setUser(curuser));
-    console.log(user)
     return unsub;
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return user;
 }
 export const getUser = async (email, password) => {
-  // console.log(email.includes(email.toLowerCase()))
   try {
     const userRef = collection(db, "users");
     const q1 = query(userRef, where("email", "==", email), limit(1));
@@ -58,7 +55,6 @@ export const getUser = async (email, password) => {
       else return Promise.resolve({ error: false, webUser });
     
   } catch (err) {
-    console.error(err);
     return Promise.resolve({ error: err.code });
   }
 }
@@ -82,7 +78,6 @@ export const getWebsByEmail = async email => {
       return Promise.resolve({ error: null, users });
     }
   } catch (error) {
-    console.error(error);
     return Promise.resolve({ error: error.code });
   }
 }
@@ -94,7 +89,6 @@ export const setWebToken = async id => {
     await updateDoc(docRef, { ResetToken });
     return Promise.resolve({ error: null, ResetToken });
   } catch (error) {
-    console.error(error);
     return Promise.resolve({ error: error.code });
   }
 }
@@ -111,7 +105,6 @@ export const checkWebToken = async (id, token) => {
       return Promise.resolve({ error: 'Имейл бүртгэлгүй байна.' });
     }
   } catch (error) {
-    console.error(error);
     return Promise.resolve({ error: error.code });
   }
 }
@@ -122,7 +115,6 @@ export const updateWebPassword = async (id, password) => {
     await updateDoc(docRef, { password: password, ResetToken: null });
     return Promise.resolve({ error: null });
   } catch (error) {
-    console.error(error);
     return Promise.resolve({ error: error.code });
   }
 }
