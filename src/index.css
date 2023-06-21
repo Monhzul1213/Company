@@ -12,8 +12,9 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 3px
+  width: 0;
+  background: transparent;
+  display: none;
 }
 /* ::-webkit-scrollbar-button {
   background: #eee

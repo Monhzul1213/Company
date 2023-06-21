@@ -27,6 +27,7 @@
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.0.3",
+    "react-frame-component": "^5.2.6",
     "react-highlight-words": "^0.18.0",
     "react-i18next": "^11.16.2",
     "react-icons": "^4.3.1",

@@ -5,8 +5,10 @@ import { Checkbox } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, createSearchParams } from 'react-router-dom';
+
 import { getUser } from '../../firebase';
 import '../../css/login1.css'
+import { config } from '../../helpers';
 import { login  } from '../../services/login.slice';
 import  logo1_white  from '../../assets/logo1_white.png';
 import { Error2, Language, Loader } from '../all';
@@ -64,6 +66,7 @@ const handleEnter = e => {
 
 return (
     <div className='login_back_3'>
+      <div>
       <img src={logo1_white} alt='Logo' className='login_form_logo3' />
       <div className='login_header_3'>
         <Language id='login_language_2' />
@@ -81,9 +84,14 @@ return (
           <span className='forgot_link' onClick={onForgot}>{t('forgot')}</span> 
         </div>
         <Social />
-        <a className='copyright_text' target="blank" href={'https://' + t('login.link')} id='copy'>{t('login.link')}</a>
-        <span className='copyright_text2'>2022</span>
       </form>
+      </div>
+      <p className='login_version'>{config?.version}</p>
+      <div style={{flex: 1}} />
+        <div className='link_back'>
+          <a className='copyright_text' target="blank" href={'https://' + t('login.link')} id='copy'>{t('login.link')}</a>
+          <span className='copyright_text2'>2022</span>
+      </div>
     </div>
   )
 }

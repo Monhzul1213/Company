@@ -869,3 +869,7 @@ ol ol > li:before {
   font-weight: 550;
   margin: 5px 0 0 0;
 }
+.link_back {
+  display: flex;
+  flex-flow: column;
+}
